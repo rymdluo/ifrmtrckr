@@ -63,9 +63,31 @@
                 {% for tag in page.taxonomy.tag %}<span class="post-tag post-tag-quaternary tag"><a href="{{ base_url }}/tag{{ config.system.param_sep }}{{ tag }}">{{ tag }}</a></span>&nbsp;
                 {% endfor %}
             {% endif %}
-            <iframe src="https://www.facebook.com/plugins/like.php?href={{ site.main_base_url|url_encode }}{{ page.url|url_encode }}&send=false&layout=button_count&width=450&show_faces=false&action=like&colorscheme=light&font&height=21&confirm=false" scrolling="no" frameborder="0" style="border:none;overflow:hidden;width:450px;height:21px;" allowTransparency="false"></iframe>
-            <iframe src="https://www.facebook.com/plugins/like.php?href={{ site.social.facebook|url_encode }}&send=false&layout=button_count&width=450&show_faces=false&action=like&colorscheme=light&font&height=21&confirm=false" scrolling="no" frameborder="0" style="border:none;overflow:hidden;width:450px;height:21px;" allowTransparency="false"></iframe>
-            
+             <div id="fb-button">
+                <iframe scrolling="no" frameborder="0" style="border:none;overflow:hidden;width:450px;height:21px;" allowTransparency="false"></iframe>
+            </div>
+            <script>
+            function getCookie(cname) {
+                var name = cname + "=";
+                var decodedCookie = decodeURIComponent(document.cookie);
+                var ca = decodedCookie.split(';');
+                for(var i = 0; i <ca.length; i++) {
+                    var c = ca[i];
+                    while (c.charAt(0) == ' ') {
+                        c = c.substring(1);
+                    }
+                    if (c.indexOf(name) == 0) {
+                        return c.substring(name.length, c.length);
+                    }
+                }
+                return "";
+            }
+            if (getCookie("lkrdpg") != "") {
+                    $('#fb-button > iframe').attr('src', 'https://www.facebook.com/plugins/like.php?href={{site.main_base_url|url_encode}}{{page.url|url_encode}}&send=false&layout=button_count&width=450&show_faces=false&action=like&colorscheme=light&font&height=21&confirm=false');
+                } else {
+                    $('#fb-button > iframe').attr('src', 'https://www.facebook.com/plugins/like.php?href={{site.social.facebook|url_encode}}&send=false&layout=button_count&width=450&show_faces=false&action=like&colorscheme=light&font&height=21&confirm=false');
+            }
+            </script>
             </section>
             <br />
             <div id="disqus_thread"></div>
@@ -87,22 +109,7 @@
     <div id="ifmwpr">
         <iframe scrolling="no" frameborder="0" style="border:none;overflow:hidden;width:450px;height:21px;" allowTransparency="false"></iframe>
     </div>
-    <script>
-    function getCookie(cname) {
-    var name = cname + "=";
-    var decodedCookie = decodeURIComponent(document.cookie);
-    var ca = decodedCookie.split(';');
-    for(var i = 0; i <ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) == ' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
-        }
-    }
-    return "";
-}        
+    <script>        
     var lkrdpg = false;
     if (getCookie("lkrdpg") != "") {
         lkrdpg = true;
@@ -154,7 +161,7 @@
             $("#ifmwpr").css("display", "none");
         }
 </script>
-    {% elseif %}
+    {% else %}
         <script>
             console.log("-/--");
         </script>
