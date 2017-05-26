@@ -19,29 +19,6 @@ An exercise in being well liked.
 
 ## ifrmtrckr success rate projections
 
-Assumptions
-- 3000 unique visits per post with 2 posts a day = 18 posts in 9 days, and 54000 unique visits.
-
-20% of posts between 2 to 9 days old
-- 4 posts at any time
-- 12000 unique visits
-
-50% of visitors are desktop/non-mobile
-- 6000 unique visits
-
-80% of traffic qualifies
-- 4800 unique visits
-
-60% chance of liking when live
-- 2880 unique visits; or
-- 2880 likes;
-
-Results
-- 2880 likes / 54000 unique visits
-- 5.33 likes / 100 unique visits
-- 5.33%
-
-
 | Views per post | Post frequency                       | Total view over 9 days | 20% of posts between 2 to 9 days old | 50% of visitors on desktop/non-mobile | 80% of traffic qualifies | 60% chance of liking when live | Results                   | Results in % |
 | -------------- | ------------------------------------ | ---------------------- | ------------------------------------ | ------------------------------------- | ------------------------ | ------------------------------ | ------------------------- | ------------ |
 | 3000 views     | 2 posts daily/ 18 posts over 9 days  | 54000 views            | 3.2 posts / 9600 views               | 4800 views                            | 3840 views               | 2304 views/ 2304 likes         | 2304 likes / 54000 views  | 4.27%        |
