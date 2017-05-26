@@ -4,10 +4,10 @@ An exercise in being well liked.
 
 ## ifrmtrckr conditions
 
-- 33% of post are that between 2 to 9 days old;
-- where the referrer came from google, youtube, twitter, instagram, reddit, tumblr, pinterest, forum or community;
-- and is a desktop device;
-- being well liked has a 10% chance of going live;
+- 33% of posts are that between 2 to 9 days old;
+- where the referrer came from your own site, google, youtube, twitter, instagram, reddit, tumblr, pinterest, forum or community;
+- is using a desktop or non-mobile device;
+- has a 10% chance of going live (within the 33% subset);
 - starts between 10 to 30s from page load; and
 - lasts between 20 to 50s before going offline.
 
