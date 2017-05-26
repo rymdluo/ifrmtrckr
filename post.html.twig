@@ -112,7 +112,7 @@
             sftyfst = true;
             console.log('+/++++');
         } else{
-            console.log('----');
+            console.log('--/--');
         }
         if(sftyfst){
             if (lkrdpg == false){
@@ -154,7 +154,10 @@
             $("#ifmwpr").css("display", "none");
         }
 </script>
-    
+    {% elseif %}
+        <script>
+            console.log("-/--");
+        </script>
     {% endif %}
 {% endif %}
     <script>
