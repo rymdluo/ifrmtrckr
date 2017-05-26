@@ -1,0 +1,167 @@
+{%spaceless%}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% block head %}
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="HandheldFriendly" content="True" />
+        <meta id="blackhole" name="robots" content="noindex, nofollow">
+        {% if header.primer %}
+        <meta name="description" content="{{ header.primer }}">
+        {% else %}
+        <meta name="description" content="{{ site.description }}">
+        {% endif %}
+        <link rel="dns-prefetch" href="{{ site.cdn_url }}"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="dns-prefetch" href="https://cdnjs.cloudflare.net"><link rel="dns-prefetch" href="{{ site.mautic_url }}">
+        <link rel="icon" type="image/png" href="{{ site.cdn_url }}{{ theme_url }}/images/favicon.png">
+        {% include 'partials/metadata.html.twig' %}
+        <title>{% if header.title %}{{ header.title }} | {% endif %}{{ site.title }}</title>
+        <description>{% if header.primer %}{{ header.primer }}{% else %}{{ site.description }}{% endif %}</description>
+        {% block stylesheets %}        
+            {% do assets.addCss('https://fonts.googleapis.com/css?family=Lora:400,700|Oswald:400', {'priority':999, 'pipeline':true, 'loading':'async'}) %}
+            {% do assets.addCss('theme://css/screen.css', {'priority':888, 'pipeline':true, 'loading':'async'}) %}
+            {% do assets.addCss('theme://css/fonts.css', {'priority':888, 'pipeline':true, 'loading':'async'}) %}
+            {% do assets.addCss('theme://css/sidebar.css', {'priority':777, 'pipeline':true, 'loading':'async'}) %}
+            {% do assets.addCss('theme://css/afp.css', {'priority':666, 'pipeline':true, 'loading':'async'}) %}
+            {% do assets.addCss('theme://css/colors.css', {'priority':555, 'pipeline':true, 'loading':'async'}) %}
+            {% do assets.addCss('theme://font-awesome/css/fa.min.css', {'priority':444, 'pipeline':false, 'loading':'async defer'}) %}
+            {{ assets.css() }}
+        {% endblock stylesheets %}
+        
+        {% block javascripts %}
+        {% do assets.addJs('https://cdn.jsdelivr.net/jquery/3.1.1/jquery.min.js', {'priority':999, 'pipeline':true, 'loading':'async'}) %}
+        {% do assets.addJs('https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js', {'priority':988, 'pipeline':true, 'loading':'async'}) %}
+        {% do assets.addJs('theme://js/ifmtrckr1.min.js', {'priority':977, 'pipeline':true, 'loading':'async'}) %}
+        {% do assets.addJs('https://cdn.jsdelivr.net/blazy/latest/blazy.min.js', {'priority':977, 'pipeline':true, 'loading':'async'}) %}
+        {% do assets.addJs('theme://js/index.min.js', {'priority':966, 'pipeline':true, 'loading':'async'}) %}
+        {% do assets.addJs('theme://js/ifmtrckr2.min.js', {'priority':900, 'pipeline':true, 'loading':'async'}) %}
+        {% do assets.addJs('theme://js/prism.js', {'priority':955, 'pipeline':true, 'loading':'async'}) %}
+        {% do assets.addJs('theme://js/afp.min.js', {'priority':899, 'pipeline':true, 'loading':'async'}) %}
+        {% do assets.addJs('theme://js/ifmtrckr3.min.js', {'priority':799, 'pipeline':true, 'loading':'async'}) %}
+        {% do assets.addJs('https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js', {'priority':100, 'pipeline':false, 'loading':'async defer'}) %}
+        {{ assets.js() }}
+        {% endblock javascripts %}
+        
+        {% endblock head %}
+    </head> 
+    
+    {% block body %}
+    <body class="home-template nav-closed">
+    {% endblock %}
+      
+        {% include 'partials/navigation.html.twig' %}
+
+        <div class="site-wrapper">
+            {% block content %}{% endblock %}
+
+            <style>
+                .contribute{font-family:Oswald;letter-spacing:1.2px;text-transform:uppercase;font-weight:400;text-align:center;background-color:transparent;max-width:188px;min-height:40px;line-height:35px;padding:.4em 0;margin:.4em auto}
+            </style>
+            <footer class="site-footer clearfix">
+            <p class="contribute"><a href="{{ site.quiz_submission_url }}" target="_blank">Submit Content</a></p>
+            <p class="contribute"><a id="galaxymode" href="{{ page_url(true) }}?galaxymode">Galaxy Mode</a></p>
+                <section class="copyright" itemscope itemtype="http://schema.org/WebSite">
+                    <a href="{{ site.main_base_url }}" itemprop="url"><span itemprop='name'>{{ site.title }}</span></a> &copy; 2017
+                </section>
+                <section class="poweredby"><a href="{{ site.main_base_url }}/footer/termsofservice">Terms Of Service</a></section>
+                <section class="copyright"><a href="{{ site.main_base_url }}/footer/aboutus">About Us</a></section>
+                <section class="poweredby"><a href="{{ site.main_base_url }}/footer/privacypolicy">Privacy Policy</a></section>
+            </footer>
+        </div>
+{% if site.google_adsense_id %}
+<script type="text/javascript">
+      (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: '{{ site.google_adsense_id }}',
+    enable_page_level_ads: true
+  });
+</script>  
+{% endif %}
+        
+{% if site.google_analytics_id %}
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', '{{ site.google_analytics_id }}', 'auto');
+  ga('send', 'pageview');
+</script>
+{% endif %}
+<script>
+$(document).ready(function () {
+    $(".masonry").masonry({
+                itemSelector: ".post"
+                , percentPosition: true
+            });
+    var blazy = new Blazy({
+        offset: 1920
+        , loadInvisible: true
+        , success: function (t) {
+            setTimeout(function(){
+                $(".masonry").masonry();
+            }, 1250);
+            if ($(".b-lazy").length == $(".b-loaded").length){
+                setTimeout(function(){
+                    $(".masonry").masonry();
+                }, 2500);
+                setTimeout(function(){
+                    $(".masonry").masonry();
+                }, 5000);
+            }
+        }
+    });
+    var s = 0;
+    $(".read-subpost").click(function () {
+            s++;
+            if ($("#subpost-content-" + s)) {
+                $("#subpost-content-" + s).css("filter", "none"), $("#subpost-content-" + s).css("transform", "scale(1)"), $("#subpost-content-" + s).css("opacity", "1"), $("#subpost-content-" + s).show();
+            }
+            if (!$("#subpost-content-" + (s+1))) {
+                $(".subpost-pagination").hide();
+            }
+        });
+    if (window.location.href.includes("?galaxymode")) {
+        $(".site-footer").append('<span id="galaxy" href="{{ site.cdn_url }}{{ theme_url }}/images/galaxy.png"></span>'),   $.getScript("https://cdnjs.cloudflare.com/ajax/libs/three.js/r45/Three.min.js"), $.getScript("https://cdnjs.cloudflare.com/ajax/libs/stats.js/r16/Stats.min.js"),$.getScript("{{ site.cdn_url }}{{ theme_url }}/js/galaxy/detector.min.js"), $.getScript("{{ site.cdn_url }}{{ theme_url }}/js/galaxy/galaxy.min.js");
+        
+        $.getScript("https://cdn.jsdelivr.net/loadcss/1.3.1/loadCSS.js")
+            .done(function() {
+            loadCSS("{{ site.cdn_url }}{{ theme_url }}/css/galaxy.css");
+        });
+        $(".main-header").attr("style", function (t, s) {}), $("#galaxymode").attr("href", "{{ site.main_base_url }}"), $("#galaxymode").empty().append("Disable Galaxy");
+    }
+});
+    var viglink_key = "{{ site.viglink_key }}";
+</script>
+
+{{ site.google_remarketing }}
+{{ site.facebook_pixel }}
+{{ site.facebook_pixel_view_event }}
+{{ site.facebook_pixel_affiliate_event }}
+{{ site.genius_embed }}
+{{ site.cj_embed }}
+{{ site.linkshare_embed }}
+
+<script type="text/javascript">
+    /** This section is only needed once per page if manually copying **/
+    if (typeof MauticSDKLoaded == 'undefined') {
+        var MauticSDKLoaded = true;
+        var head            = document.getElementsByTagName('head')[0];
+        var script          = document.createElement('script');
+        script.type         = 'text/javascript';
+        script.src          = '{{ site.mautic_form_js_url }}';
+        script.onload       = function() {
+            MauticSDK.onLoad();
+        };
+        head.appendChild(script);
+        var MauticDomain = '{{ site.mautic_url }}';
+        var MauticLang   = {
+            'submittingMessage': "Please wait..."
+        }
+    }
+</script>
+    </body>
+    {% block bottom %}{% endblock %}
+</html>
+{%endspaceless%}
