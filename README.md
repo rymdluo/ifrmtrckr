@@ -30,7 +30,7 @@ Assumptions
 - 6000 unique visits
 
 80% of traffic qualifies
-- 48000 unique visits
+- 4800 unique visits
 
 60% chance of liking when live
 - 2880 unique visits; or
