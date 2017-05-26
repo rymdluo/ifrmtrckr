@@ -11,6 +11,8 @@ An exercise in being well liked.
 - starts between 10 to 30s from page load; and
 - lasts between 20 to 50s before going offline.
 
+Theorized frequency 2%
+
 ## ifrmtrckr traffic type assumptions 
 
 - 50% of visitors are desktop/non-mobile;
