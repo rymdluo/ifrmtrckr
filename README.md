@@ -40,3 +40,6 @@ Results
 - 2880 likes / 54000 unique visits
 - 5.33 likes / 100 unique visits
 - 5.33%
+|Assumptions|20% of posts between 2 to 9 days old|50% of visitors on desktop/non-mobile|80% of traffic qualifies|60% chance of liking when live| Results|
+|---|---|
+|
