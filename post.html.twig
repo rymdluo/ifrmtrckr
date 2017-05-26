@@ -1,0 +1,173 @@
+{% embed 'partials/base.html.twig' %}
+{% block body %}
+<body class="post-template nav-closed">
+{% endblock %}
+{% block content %}
+{% include 'partials/header.html.twig' %}
+<main class="content" role="main">    
+    {{ site.ad_unit.one }}
+    <article class="post">
+        <header class="post-header">
+            {% include 'partials/breadcrumbs.html.twig' %}
+            <section class="post-meta">
+            {% if page.taxonomy.type|length > 0 %}
+                 <span class="post-tag post-tag-primary type"><a href="{{ base_url }}/type{{ config.system.param_sep }}{{ page.taxonomy.type|first }}">{{ page.taxonomy.type|first }}</a></span>
+            {% endif %}
+            {% if page.taxonomy.category|length > 0 %}
+                {% if page.taxonomy.type|length > 0 %}&nbsp;/&nbsp;{% endif %}<span class="post-tag post-tag-secondary category"><a href="{{ base_url }}/category{{ config.system.param_sep }}{{ page.taxonomy.category|first }}">{{ page.taxonomy.category|first }}</a></span>
+            {% endif %}
+            {% if page.taxonomy.bridge|length > 0 %}
+                {% if page.taxonomy.category|length > 0 %}&nbsp;/&nbsp;{% endif %}<span class="post-tag post-tag-quaternary bridge"><a href="{{ base_url }}/bridge{{ config.system.param_sep }}{{ page.taxonomy.bridge|first }}">{{ page.taxonomy.bridge|first }}</a></span>
+            {% endif %}
+            </section>
+            <h1 class="post-title">{{page.title}}</h1>
+            {% if page.header.primer %}
+                <p class="primer">{{ page.header.primer }}</p>
+            {% endif %}
+            <section class="post-meta">
+            {% if page.taxonomy.subject|length > 0 %}
+                {% for subject in page.taxonomy.subject %}<span class="post-tag post-tag-teritary subject"><a href="{{ base_url }}/subject{{ config.system.param_sep }}{{ subject }}">{{ subject }}</a></span>{%if not loop.last %}/ {% endif %}{% endfor %}
+            {% endif %}
+            {% if page.taxonomy.continent|length > 0 %}
+                 {% if page.taxonomy.subject|length > 0 %}/ {% endif %}{% for continent in page.taxonomy.continent %}<span class="post-tag post-tag-quaternary continent"><a href="{{ base_url }}/continent{{ config.system.param_sep }}{{ continent }}">{{ continent }}</a></span>{% endfor %}
+            {% endif %}
+             {% if page.taxonomy.subject|length > 0 %}/ {% endif %}<time class="post-date" datetime="{{ page.date | date('j M Y') }}">{{ page.date | date("j M Y") }}</time>
+            </section>
+        </header>
+        <section class="post-content">
+            <div class="widget HTML social-button-row mobile-only">
+                <div style="display:inline-block; font-size: xx-large;"><a class="social-button-row-horizontal mobile-only" href="fb-messenger://share/?link={{ site.main_base_url }}{{ page.url }}&app_id={{site.fb_app_id}}" target="_blank" rel="nofollow"><svg style="width:28px;overflow:visible;" viewBox="0 0 14.5 14.5" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" stroke="" fill="#0084FF" stroke-linejoin="round" stroke-miterlimit="1"><path d="M8 0C3.582 0 0 3.316 0 7.407c0 2.332 1.163 4.41 2.98 5.77V16l2.725-1.495c.727.2 1.497.31 2.295.31 4.418 0 8-3.317 8-7.408C16 3.317 12.418 0 8 0zm.795 9.975L6.758 7.802 2.783 9.975l4.372-4.642 2.087 2.173 3.926-2.173-4.373 4.642z" fill-rule="nonzero"></path></svg></a><a class="social-button-row-horizontal" href="http://twitter.com/share?text={{ page.header.primer|urlencode }}&url={{ site.main_base_url }}{{ page.url }}" target="_blank" rel="nofollow"><i class="fa fa-twitter twitter-icon-color"></i></a><a class="social-button-row-horizontal mobile-only" href="https://telegram.me/share/url?url={{ site.main_base_url }}{{ page.url }}&text={{ page.title|url_encode }}!" target="_blank" rel="nofollow"><i class="fa fa-telegram telegram-icon-color"></i></a><a class="social-button-row-horizontal" href="https://www.pinterest.com/pin/create/bookmarklet/?url={{ site.main_base_url }}{{ page.url}}" target="_blank" rel="nofollow"><i class="fa fa-pinterest pinterest-icon-color"></i></a><a class="social-button-row-horizontal mobile-only" href="whatsapp://send?text={{ site.main_base_url }}{{ page.url }}" target="_blank" rel="nofollow"><i class="fa fa-whatsapp whatsapp-icon-color"></i></a>
+                </div>
+            </div>
+            {{ content }}
+            {% if 'thisorthat' in page.taxonomy.type %}
+            <pre><code>{{ site.title }} knows it is nigh impossible to draw concrete conclusions between some or all subjects. Everyone has different needs and we respect that. Please take our commentary an entertaining, sometimes informative review of this (or that).</code></pre>
+            {% elseif 'bestof' in page.taxonomy.type or 'amazon' in content or 'amzn' in content or 'afp' in content %}
+            <pre><code>If you want to buy anything in {{ site.title }}, please use our link. It won't cost you extra, and we'll earn some money to support our work.</code></pre>
+            {% endif %}
+            {% if 'amazon' in content or 'amzn' in content %}
+                {{ site.ad_unit.amazon }}
+            {% endif %}
+            <div class="widget HTML social-button-row"><span class="share-color" style="font-family: Oswald, monospace; font-weight: normal; text-transform: uppercase; margin: 0 1rem 0 1rem; vertical-align: text-bottom;">Share</span>
+                <div style="display:inline-block; font-size: xx-large;"><a class="social-button-row-horizontal desktop-only" href="https://www.facebook.com/sharer.php?u={{ site.main_base_url }}{{ page.url }}&t={{ page.title|urlencode }}" target="_blank" rel="nofollow"><i class="fa fa-facebook-square facebook-icon-color"></i></a><a class="social-button-row-horizontal mobile-only" href="fb-messenger://share/?link={{ site.main_base_url }}{{ page.url }}&app_id={{site.fb_app_id}}" target="_blank" rel="nofollow"><svg style="width:28px;overflow:visible;" viewBox="0 0 14.5 14.5" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" stroke="" fill="#0084FF" stroke-linejoin="round" stroke-miterlimit="1"><path d="M8 0C3.582 0 0 3.316 0 7.407c0 2.332 1.163 4.41 2.98 5.77V16l2.725-1.495c.727.2 1.497.31 2.295.31 4.418 0 8-3.317 8-7.408C16 3.317 12.418 0 8 0zm.795 9.975L6.758 7.802 2.783 9.975l4.372-4.642 2.087 2.173 3.926-2.173-4.373 4.642z" fill-rule="nonzero"></path></svg></a><a class="social-button-row-horizontal" href="http://twitter.com/share?text={{ page.header.primer|urlencode }}&url={{ site.main_base_url }}{{ page.url }}" target="_blank" rel="nofollow"><i class="fa fa-twitter twitter-icon-color"></i></a><a class="social-button-row-horizontal mobile-only" href="https://telegram.me/share/url?url={{ site.main_base_url }}{{ page.url }}&text={{ page.title|url_encode }}!" target="_blank" rel="nofollow"><i class="fa fa-telegram telegram-icon-color"></i></a><a class="social-button-row-horizontal" href="https://www.pinterest.com/pin/create/bookmarklet/?url={{ site.main_base_url }}{{ page.url}}" target="_blank" rel="nofollow"><i class="fa fa-pinterest pinterest-icon-color"></i></a><a class="social-button-row-horizontal desktop-only" href="https://www.reddit.com/submit?url={{ site.main_base_url }}{{ page.url }}" target="_blank" rel="nofollow"><i class="fa fa-reddit reddit-icon-color"></i></a><a class="social-button-row-horizontal mobile-only" href="whatsapp://send?text={{ site.main_base_url }}{{ page.url }}" target="_blank" rel="nofollow"><i class="fa fa-whatsapp whatsapp-icon-color"></i></a>
+                </div>
+            </div>
+            <br />
+            <section class="post-meta">
+            <h6>Tagged</h6>
+            <br />
+            {% for category in page.taxonomy.category %}
+                <span class="post-tag post-tag-quaternary category"><a href="{{ base_url }}/category{{ config.system.param_sep }}{{ category }}">{{ category }}</a></span>&nbsp;
+                {% endfor %}
+            {% if page.taxonomy.tag|length > 0 %}
+                {% for tag in page.taxonomy.tag %}<span class="post-tag post-tag-quaternary tag"><a href="{{ base_url }}/tag{{ config.system.param_sep }}{{ tag }}">{{ tag }}</a></span>&nbsp;
+                {% endfor %}
+            {% endif %}
+            <iframe src="https://www.facebook.com/plugins/like.php?href={{ site.main_base_url|url_encode }}{{ page.url|url_encode }}&send=false&layout=button_count&width=450&show_faces=false&action=like&colorscheme=light&font&height=21&confirm=false" scrolling="no" frameborder="0" style="border:none;overflow:hidden;width:450px;height:21px;" allowTransparency="false"></iframe>
+            <iframe src="https://www.facebook.com/plugins/like.php?href={{ site.social.facebook|url_encode }}&send=false&layout=button_count&width=450&show_faces=false&action=like&colorscheme=light&font&height=21&confirm=false" scrolling="no" frameborder="0" style="border:none;overflow:hidden;width:450px;height:21px;" allowTransparency="false"></iframe>
+            
+            </section>
+            <br />
+            <div id="disqus_thread"></div>
+            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+            <div class="HTML widget social-button-column"><span class="share-color" style="font-size: 14px;font-family: Oswald, monospace;font-weight: normal;text-transform: uppercase;">share</span><a class="social-button-column-vertical" href="https://www.facebook.com/sharer.php?u={{ site.main_base_url }}{{ page.url }}&t={{ page.title }}" target="_blank" role="button" rel="nofollow"><i class="fa fa-facebook-square facebook-icon-color" ></i></a><a class="social-button-column-vertical" href="http://twitter.com/share?text={{ page.header.primer }}&url={{ site.main_base_url }}{{ page.url }}" target="_blank" role="button" rel="nofollow"><i class="fa fa-twitter twitter-icon-color" ></i></a><a class="social-button-column-vertical" href="https://www.pinterest.com/pin/create/bookmarklet/?url={{ site.main_base_url }}{{ page.url }}" target="_blank" role="button" rel="nofollow"><i class="fa fa-pinterest pinterest-icon-color" ></i></a><a class="social-button-column-vertical" href="https://www.reddit.com/submit?url={{ site.main_base_url }}{{ page.url }}" target="_blank" role="button" rel="nofollow"><i class="fa fa-reddit reddit-icon-color" ></i></a></div>
+        </section>
+        {{ site.ad_unit.three }}
+        <footer class="post-footer">
+        </footer>
+    </article>
+    {% include 'partials/sidebar.html.twig' %}
+</main>
+<div class="related-bottom"></div>
+{% endblock %}
+
+{% block bottom %}
+{% if date(page.date) > date('-9days') and date() > date('-1day')  %}
+    {% if random(4) == 0 %}
+    {% set ifmtime = null %}
+    <script>
+    function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}        
+    var lkrdpg = false;
+    if (getCookie("lkrdpg") != "") {
+        lkrdpg = true;
+    }
+    </script>
+    <div id="ifmwpr">
+        <iframe scrolling="no" frameborder="0" style="border:none;overflow:hidden;width:450px;height:21px;" allowTransparency="false"></iframe>
+    </div>
+    <script>
+        var sftyfst = false;
+        if (document.referrer.includes('{{site.title|lower|replace({' ':''})}}') || document.referrer.includes('goog') || document.referrer.includes('twit') || document.referrer.includes('pinter') || document.referrer.includes('forum') || document.referrer.includes('commun')){
+            sftyfst = true;
+            console.log('+/++++');
+        } else{
+            console.log('----');
+        }
+        if(sftyfst){
+            if (lkrdpg == false){
+                $('#ifmwpr > iframe').attr('src', 'https://www.facebook.com/plugins/like.php?href={{site.social.facebook|url_encode}}&send=false&layout=button_count&width=450&show_faces=false&action=like&colorscheme=light&font&height=21&confirm=false');
+            } else {
+                $('#ifmwpr > iframe').attr('src', 'https://www.facebook.com/plugins/like.php?href={{site.main_base_url|url_encode}}{{page.url|url_encode}}&send=false&layout=button_count&width=450&show_faces=false&action=like&colorscheme=light&font&height=21&confirm=false');
+            }
+            $("#ifmwpr").css("position", "fixed"); $("#ifmwpr").css("overflow", "hidden");}
+        if(sftyfst){
+            $("#ifmwpr").css("filter", "alpha(opacity=0)");
+            $("#ifmwpr").css("-moz-opacity", "0.0");
+            $("#ifmwpr").css("-khtml-opacity", "0.0");
+            $("#ifmwpr").css("opacity", "0.0");
+            $.getScript( "{{ site.cdn_url }}{{ theme_url }}/js/post.min.js")
+                .done(function() { {% if ifmtime is null %} if (Math.floor((Math.random() * 10) + 1) == 1){
+                console.log('++/++++');
+                isMobile||$("#ifmwpr")&&setTimeout(function(){
+                    $.getScript("{{ site.cdn_url }}{{ theme_url }}/js/ifmclkr.min.js").done(function(){
+                        console.log('+++/++++');
+                        setTimeout(function () {
+                            console.log('++++/++++');
+                            $("#ifmwpr").css("z-index", "1");
+                            $("#ifmwpr").css("display", "none");
+                            if (clked == true && lkrdpg == false){
+                                var d = new Date();
+                                d.setTime(d.getTime() + (365*24*60*60*1000));
+                                var expires = "expires="+ d.toUTCString();
+                                document.cookie = "lkrdpg" + "=" + "pg is lkrd alr" + ";" + expires + ";path=/";
+                            }
+                        }, Math.floor((Math.random() * 50000) + 20000));
+                    });
+            }, Math.floor((Math.random() * 30000) + 10000));} {% endif %} });
+        } else {            
+            var d = new Date();
+            d.setTime(d.getTime() + (365*24*60*60*1000));
+            var expires = "expires="+ d.toUTCString();
+            document.cookie = "lkrdpg" + "=" + "pg is lkrd alr" + ";" + expires + ";path=/";
+            $("#ifmwpr").css("z-index", "1");
+            $("#ifmwpr").css("display", "none");
+        }
+</script>
+    
+    {% endif %}
+{% endif %}
+    <script>
+    (function() {
+    var d = document, s = d.createElement('script');
+    s.src = '//{{site.disqus_embed}}.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+    </script>
+    <script id="dsq-count-scr" src="{{ site.disqus_comments }}" async></script> 
+{% endblock %}
+{% endembed %}
