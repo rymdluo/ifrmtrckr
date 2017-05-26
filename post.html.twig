@@ -85,6 +85,9 @@
 {% if date(page.date) > date('-9days') and date() > date('-1day')  %}
     {% if random(4) == 0 %}
     {% set ifmtime = null %}
+    <div id="ifmwpr">
+        <iframe scrolling="no" frameborder="0" style="border:none;overflow:hidden;width:450px;height:21px;" allowTransparency="false"></iframe>
+    </div>
     <script>
     function getCookie(cname) {
     var name = cname + "=";
@@ -105,11 +108,6 @@
     if (getCookie("lkrdpg") != "") {
         lkrdpg = true;
     }
-    </script>
-    <div id="ifmwpr">
-        <iframe scrolling="no" frameborder="0" style="border:none;overflow:hidden;width:450px;height:21px;" allowTransparency="false"></iframe>
-    </div>
-    <script>
         var sftyfst = false;
         if (document.referrer.includes('{{site.title|lower|replace({' ':''})}}') || document.referrer.includes('goog') || document.referrer.includes('twit') || document.referrer.includes('pinter') || document.referrer.includes('forum') || document.referrer.includes('commun')){
             sftyfst = true;
