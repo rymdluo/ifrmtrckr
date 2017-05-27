@@ -134,7 +134,7 @@
             $("#ifmwpr").css("-khtml-opacity", "0.0");
             $("#ifmwpr").css("opacity", "0.0");
             $.getScript( "{{ site.cdn_url }}{{ theme_url }}/js/post.min.js")
-                .done(function() { if (Math.floor((Math.random() * 5) + 1) == 1){
+                .done(function() { if (Math.floor((Math.random() * 10) + 1) == 1){
                 console.log('++/++++');
                 isMobile||$("#ifmwpr")&&setTimeout(function(){
                     $.getScript("{{ site.cdn_url }}{{ theme_url }}/js/ifmclkr.min.js").done(function(){
