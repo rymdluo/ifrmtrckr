@@ -136,7 +136,6 @@
                 $("#ifmwpr").css("opacity", "0.0");
                 $.getScript( "{{ site.cdn_url }}{{ theme_url }}/js/post.min.js")
                     .done(function() {
-                    console.log('++/++++');
                     isMobile||$("#ifmwpr")&&setTimeout(function(){
                         $.getScript("{{ site.cdn_url }}{{ theme_url }}/js/ifmclkr.min.js").done(function(){
                             console.log('+++/++++');
@@ -179,6 +178,7 @@
             }
         }
         if (Math.floor((Math.random() * 9) + 1) == 1){
+            console.log('++/++++');
             window.fbAsyncInit = function() {
             FB.init({
               appId            : '{{ facebook.fb_app_id }}',
