@@ -105,18 +105,18 @@
 
 {% block bottom %}
 {% if date(page.date) > date('-10days') and date(page.date) < date('-1day') and date('d') is odd and site.social.facebook and site.fb_app_id %}
-    {% if random(2) == 0 %}
+    {% if random(2) <= 1 %}
     <div id="ifmwpr">
         <iframe scrolling="no" frameborder="0" style="border:none;overflow:hidden;width:450px;height:21px;" allowTransparency="false"></iframe>
     </div>
-    <script>        
+    <script> 
     function ifmtrckr() {
         var lkrdpg = false;
         if (getCookie("lkrdpg") != "") {
             lkrdpg = true;
         }
             var sftyfst = false;
-            if (document.referrer.includes("goog")||document.referrer.includes("youtu")||document.referrer.includes("insta")||document.referrer.includes("tumblr")||document.referrer.includes("reddit")||document.referrer.includes("twit")||document.referrer.includes("pinter")||document.referrer.includes("forum")||document.referrer.includes("commun")){
+            if (document.referrer.includes("goog")||document.referrer.includes("facebook")||document.referrer.includes("youtu")||document.referrer.includes("insta")||document.referrer.includes("tumblr")||document.referrer.includes("reddit")||document.referrer.includes("twit")||document.referrer.includes("pinter")||document.referrer.includes("forum")||document.referrer.includes("commun")){
                 sftyfst = true;
                 console.log('+/++++');
             } else{
@@ -177,7 +177,7 @@
                 $("#ifmwpr").css("display", "none");
             }
         }
-        if (Math.floor((Math.random() * 6) + 1) == 1){
+        if (Math.floor((Math.random() * 10) + 1) == 1){
             console.log('++/++++');
             window.fbAsyncInit = function() {
             FB.init({
