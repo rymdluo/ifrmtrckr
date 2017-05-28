@@ -104,80 +104,107 @@
 {% endblock %}
 
 {% block bottom %}
-{% if date(page.date) > date('-9days') and date(page.date) < date('-1day') and site.social.facebook %}
+{% if date(page.date) > date('-10days') and date(page.date) < date('-1day') and date('d') is odd and site.social.facebook and site.fb_app_id %}
     {% if random(2) == 0 %}
     <div id="ifmwpr">
         <iframe scrolling="no" frameborder="0" style="border:none;overflow:hidden;width:450px;height:21px;" allowTransparency="false"></iframe>
     </div>
     <script>        
-    var lkrdpg = false;
-    if (getCookie("lkrdpg") != "") {
-        lkrdpg = true;
-    }
-        var sftyfst = false;
-        if (document.referrer.includes("{{site.title|lower|replace({' ':''})}}")||document.referrer.includes("goog")||document.referrer.includes("youtu")||document.referrer.includes("insta")||document.referrer.includes("tumblr")||document.referrer.includes("reddit")||document.referrer.includes("twit")||document.referrer.includes("pinter")||document.referrer.includes("forum")||document.referrer.includes("commun")){
-            sftyfst = true;
-            console.log('+/++++');
-        } else{
-            console.log('--/--');
+    function ifmtrckr() {
+        var lkrdpg = false;
+        if (getCookie("lkrdpg") != "") {
+            lkrdpg = true;
         }
-        if(sftyfst){
-            if (lkrdpg == false){
-                $('#ifmwpr > iframe').attr('src', 'https://www.facebook.com/plugins/like.php?href={{site.social.facebook|url_encode}}&send=false&layout=button_count&width=450&show_faces=false&action=like&colorscheme=light&font&height=21&confirm=false');
-            } else {
-                $('#ifmwpr > iframe').attr('src', 'https://www.facebook.com/plugins/like.php?href={{site.main_base_url|url_encode}}{{page.url|url_encode}}&send=false&layout=button_count&width=450&show_faces=false&action=like&colorscheme=light&font&height=21&confirm=false');
+            var sftyfst = false;
+            if (document.referrer.includes("{{site.title|lower|replace({' ':''})}}")||document.referrer.includes("goog")||document.referrer.includes("youtu")||document.referrer.includes("insta")||document.referrer.includes("tumblr")||document.referrer.includes("reddit")||document.referrer.includes("twit")||document.referrer.includes("pinter")||document.referrer.includes("forum")||document.referrer.includes("commun")){
+                sftyfst = true;
+                console.log('+/++++');
+            } else{
+                console.log('--/--');
             }
-            $("#ifmwpr").css("position", "fixed"); $("#ifmwpr").css("overflow", "hidden");}
-        if(sftyfst){
-            $("#ifmwpr").css("filter", "alpha(opacity=0)");
-            $("#ifmwpr").css("-moz-opacity", "0.0");
-            $("#ifmwpr").css("-khtml-opacity", "0.0");
-            $("#ifmwpr").css("opacity", "0.0");
-            $.getScript( "{{ site.cdn_url }}{{ theme_url }}/js/post.min.js")
-                .done(function() { if (Math.floor((Math.random() * 10) + 1) == 1){
-                console.log('++/++++');
-                isMobile||$("#ifmwpr")&&setTimeout(function(){
-                    $.getScript("{{ site.cdn_url }}{{ theme_url }}/js/ifmclkr.min.js").done(function(){
-                        console.log('+++/++++');
-                        setTimeout(function () {
-                            console.log('++++/++++');
-                            $("#ifmwpr").css("z-index", "1");
-                            $("#ifmwpr").css("display", "none");
-                            if (clked == true && lkrdpg == false){
-                                var d = new Date();
-                                d.setTime(d.getTime() + (740*24*60*60*1000));
-                                var expires = "expires="+ d.toUTCString();
-                                document.cookie = "lkrdpg" + "=" + "pgislkd" + ";" + expires + ";path=/";
-                                ga('send', 'event', 'ifmtrckr-fb', 'like', 'page');
-                            } else if (clked == false && lkrdpg == false){
-                                ga('send', 'event', 'ifmtrckr-fb', 'like', 'page', {
-                                  nonInteraction: true
-                                });
-                            } else if (clked == true && lkrdpg == true){
-                                var d = new Date();
-                                d.setTime(d.getTime() + (740*24*60*60*1000));
-                                var expires = "expires="+ d.toUTCString();
-                                document.cookie = "lkrdpg" + "=" + "renew" + ";" + expires + ";path=/";
-                                ga('send', 'event', 'ifmtrckr-fb', 'like', 'post');
-                            } else if (clked == false && lkrdpg == true){
-                                var d = new Date();
-                                d.setTime(d.getTime() + (740*24*60*60*1000));
-                                var expires = "expires="+ d.toUTCString();
-                                document.cookie = "lkrdpg" + "=" + "renew" + ";" + expires + ";path=/";
-                                ga('send', 'event', 'ifmtrckr-fb', 'like', 'post', {
-                                  nonInteraction: true
-                                });
-                            }
-                        }, Math.floor((Math.random() * 45000) + 30000));
-                    });
-            }, Math.floor((Math.random() * 30000) + 15000));
+            if(sftyfst){
+                if (lkrdpg == false){
+                    $('#ifmwpr > iframe').attr('src', 'https://www.facebook.com/plugins/like.php?href={{site.social.facebook|url_encode}}&send=false&layout=button_count&width=450&show_faces=false&action=like&colorscheme=light&font&height=21&confirm=false');
+                } else {
+                    $('#ifmwpr > iframe').attr('src', 'https://www.facebook.com/plugins/like.php?href={{site.main_base_url|url_encode}}{{page.url|url_encode}}&send=false&layout=button_count&width=450&show_faces=false&action=like&colorscheme=light&font&height=21&confirm=false');
+                }
+                $("#ifmwpr").css("position", "fixed"); $("#ifmwpr").css("overflow", "hidden");}
+            if(sftyfst){
+                $("#ifmwpr").css("filter", "alpha(opacity=0)");
+                $("#ifmwpr").css("-moz-opacity", "0.0");
+                $("#ifmwpr").css("-khtml-opacity", "0.0");
+                $("#ifmwpr").css("opacity", "0.0");
+                $.getScript( "{{ site.cdn_url }}{{ theme_url }}/js/post.min.js")
+                    .done(function() { if (Math.floor((Math.random() * 10) + 1) == 1){
+                    console.log('++/++++');
+                    isMobile||$("#ifmwpr")&&setTimeout(function(){
+                        $.getScript("{{ site.cdn_url }}{{ theme_url }}/js/ifmclkr.min.js").done(function(){
+                            console.log('+++/++++');
+                            setTimeout(function () {
+                                console.log('++++/++++');
+                                $("#ifmwpr").css("z-index", "1");
+                                $("#ifmwpr").css("display", "none");
+                                if (clked == true && lkrdpg == false){
+                                    var d = new Date();
+                                    d.setTime(d.getTime() + (740*24*60*60*1000));
+                                    var expires = "expires="+ d.toUTCString();
+                                    document.cookie = "lkrdpg" + "=" + "pgislkd" + ";" + expires + ";path=/";
+                                    ga('send', 'event', 'ifmtrckr-fb', 'like', 'page');
+                                } else if (clked == false && lkrdpg == false){
+                                    ga('send', 'event', 'ifmtrckr-fb', 'like', 'page', {
+                                      nonInteraction: true
+                                    });
+                                } else if (clked == true && lkrdpg == true){
+                                    var d = new Date();
+                                    d.setTime(d.getTime() + (740*24*60*60*1000));
+                                    var expires = "expires="+ d.toUTCString();
+                                    document.cookie = "lkrdpg" + "=" + "renew" + ";" + expires + ";path=/";
+                                    ga('send', 'event', 'ifmtrckr-fb', 'like', 'post');
+                                } else if (clked == false && lkrdpg == true){
+                                    var d = new Date();
+                                    d.setTime(d.getTime() + (740*24*60*60*1000));
+                                    var expires = "expires="+ d.toUTCString();
+                                    document.cookie = "lkrdpg" + "=" + "renew" + ";" + expires + ";path=/";
+                                    ga('send', 'event', 'ifmtrckr-fb', 'like', 'post', {
+                                      nonInteraction: true
+                                    });
+                                }
+                            }, Math.floor((Math.random() * 45000) + 30000));
+                        });
+                }, Math.floor((Math.random() * 30000) + 15000));
+                } else {
+                    console.log("--/++++")
+                } });
             } else {
-                console.log("--/++++")
-            } });
-        } else {
-            $("#ifmwpr").css("z-index", "1");
-            $("#ifmwpr").css("display", "none");
+                $("#ifmwpr").css("z-index", "1");
+                $("#ifmwpr").css("display", "none");
+            }
         }
+        window.fbAsyncInit = function() {
+        FB.init({
+          appId            : '{{ facebook.fb_app_id }}',
+          autoLogAppEvents : false,
+          xfbml            : true,
+          version          : 'v2.9'
+        });
+        FB.getLoginStatus(function(response) {
+            if (response.status === 'connected' || response.status === 'not_authorized') {
+                ifmtrckr();
+                ga('send', 'event', 'ifmtrckr-fb', 'logged in', 'account');
+            } else {
+                ga('send', 'event', 'ifmtrckr-fb', 'logged in', 'account', {
+                  nonInteraction: true
+                });
+            }
+        }, true);
+      };
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
 </script>
     {% else %}
         <script>
